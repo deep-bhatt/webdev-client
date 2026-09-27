@@ -29,8 +29,8 @@ export default function ParagraphTag() {
         the vertical space between paragraphs.
       </p>
       <p id="wd-p-your-1">
-        My name is Deep Bhatt. I am a student at Northeastern University and
-        this fall I am in the CS5610 Web Development class.
+        My name is Deep Dushyantkumar Bhatt. I am a student at Northeastern
+        University and this fall I am in the CS5610 Web Development class.
       </p>
       <p id="wd-p-your-2">
         In this course I want to learn how to build a full web app on my own,

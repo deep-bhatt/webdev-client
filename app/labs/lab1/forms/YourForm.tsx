@@ -12,6 +12,9 @@ export default function YourForm() {
       <label htmlFor="wd-your-first-name">First name: </label>
       <input id="wd-your-first-name" defaultValue="Deep" />
       <br />
+      <label htmlFor="wd-your-middle-name">Middle name: </label>
+      <input id="wd-your-middle-name" defaultValue="Dushyantkumar" />
+      <br />
       <label htmlFor="wd-your-last-name">Last name: </label>
       <input id="wd-your-last-name" defaultValue="Bhatt" />
       <br />
@@ -120,7 +123,7 @@ export default function YourForm() {
         id="wd-your-grad-year"
         min={2026}
         max={2032}
-        defaultValue={2028}
+        defaultValue={2027}
       />
       <br />
       <label htmlFor="wd-your-start-date">Program start date: </label>
@@ -129,7 +132,7 @@ export default function YourForm() {
         id="wd-your-start-date"
         min="2020-01-01"
         max="2030-12-31"
-        defaultValue="2026-09-01"
+        defaultValue="2025-09-03"
       />
       <br />
       <label htmlFor="wd-your-excitement">

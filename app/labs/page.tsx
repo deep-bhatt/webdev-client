@@ -4,7 +4,7 @@ export default function Labs() {
   return (
     <div id="wd-labs">
       <h1>Labs</h1>
-      <h3 id="wd-student-name">Deep Bhatt</h3>
+      <h3 id="wd-student-name">Deep Dushyantkumar Bhatt</h3>
       <a href="https://github.com/deep-bhatt/webdev-client" id="wd-github">
         GitHub repository
       </a>

@@ -68,7 +68,7 @@ export default function HighlightedBoxLab() {
         borderWidth={4}
         borderRadius={0}
       >
-        <h4>Deep Bhatt</h4>
+        <h4>Deep Dushyantkumar Bhatt</h4>
         <p>My goals for this course:</p>
         <ul>
           <li>Build and deploy a full stack web app by the end of the term</li>
