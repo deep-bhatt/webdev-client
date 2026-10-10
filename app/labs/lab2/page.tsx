@@ -8,6 +8,8 @@ import BoxModel from "./BoxModel";
 import Corners from "./Corners";
 import Dimensions from "./Dimensions";
 import Display from "./Display";
+import Positions from "./Positions";
+import Zindex from "./Zindex";
 
 export default function Lab2() {
   return (
@@ -130,6 +132,8 @@ export default function Lab2() {
       <Corners />
       <Dimensions />
       <Display />
+      <Positions />
+      <Zindex />
     </div>
   );
 }
