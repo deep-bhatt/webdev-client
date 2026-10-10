@@ -1,0 +1,82 @@
+/* p {
+  background-color: green;
+  color: white;
+} */
+#wd-lab2 h2 {
+  background-color: navy;
+  color: white;
+}
+#wd-lab2 h3 {
+  background-color: pink;
+  color: maroon;
+}
+
+p#wd-id-selector-1 {
+  background-color: red;
+  color: white;
+}
+p#wd-id-selector-2 {
+  background-color: yellow;
+  color: black;
+}
+p#wd-id-selector-3 {
+  background-color: darkcyan;
+  color: white;
+}
+p#wd-ai-id-selector {
+  background-color: orange;
+  color: black;
+}
+
+.wd-class-selector {
+  background-color: yellow;
+  color: blue;
+}
+.wd-custom-class {
+  background-color: khaki;
+  color: brown;
+}
+.wd-ai-class-selector {
+  background-color: lightgreen;
+  color: darkslategray;
+}
+
+.wd-selector-1 .wd-selector-3 {
+  background-color: red;
+  color: white;
+}
+.wd-selector-2 > .wd-selector-3 > .wd-selector-4 {
+  background-color: yellow;
+  color: blue;
+}
+.wd-selector-2 > .wd-selector-6 {
+  background-color: cyan;
+  color: black;
+}
+.wd-selector-1 .wd-ai-selector-5 {
+  background-color: black;
+  color: lime;
+}
+
+/* :where() adds no specificity, so the p rules below stay plain
+   tag rules that only reach paragraphs inside their demo div */
+#wd-specificity-test {
+  color: navy;
+}
+:where(#wd-specificity-demo) p {
+  color: brown;
+}
+.wd-specificity-test {
+  color: olive;
+}
+
+/* The id rule should win: id beats class, class beats tag */
+:where(#wd-ai-cascade-demo) p {
+  background-color: green;
+}
+.wd-ai-cascade {
+  background-color: yellow;
+}
+#wd-ai-cascade {
+  background-color: red;
+}
