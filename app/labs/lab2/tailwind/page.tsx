@@ -8,6 +8,8 @@ import TailwindResponsiveFlex from "./TailwindResponsiveFlex";
 import TailwindResponsiveGrid from "./TailwindResponsiveGrid";
 import TailwindResponsiveSpacingText from "./TailwindResponsiveSpacingText";
 import TailwindResponsiveDesign from "./TailwindResponsiveDesign";
+import TailwindFilters from "./TailwindFilters";
+import TailwindGrids from "./TailwindGrids";
 
 export default function TailwindLab() {
   return (
@@ -30,6 +32,10 @@ export default function TailwindLab() {
       <TailwindResponsiveSpacingText />
       <hr className="my-8" />
       <TailwindResponsiveDesign />
+      <hr className="my-8" />
+      <TailwindFilters />
+      <hr className="my-8" />
+      <TailwindGrids />
     </div>
   );
 }
