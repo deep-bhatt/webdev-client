@@ -20,8 +20,14 @@ import FindIndex from "./FindIndex";
 import FilterFunction from "./FilterFunction";
 import IncludesSomeEvery from "./IncludesSomeEvery";
 import ReduceFunction from "./ReduceFunction";
+import JsonStringify from "./JsonStringify";
+import House from "./House";
+import Spreader from "./Spreader";
+import Destructing from "./Destructing";
+import FunctionDestructing from "./FunctionDestructing";
 
 export default function Lab3() {
+  console.log("Hello World!");
   return (
     <div id="wd-lab3">
       <h2>Lab 3</h2>
@@ -47,6 +53,11 @@ export default function Lab3() {
       <FilterFunction />
       <IncludesSomeEvery />
       <ReduceFunction />
+      <JsonStringify />
+      <House />
+      <Spreader />
+      <Destructing />
+      <FunctionDestructing />
     </div>
   );
 }
