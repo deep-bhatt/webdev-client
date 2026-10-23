@@ -1,0 +1,23 @@
+export default function IncludesSomeEvery() {
+  const numbers = [1, 2, 3, 4, 5];
+  const includes3 = numbers.includes(3);
+  const includes8 = numbers.includes(8);
+  const includes5 = numbers.includes(5);
+  const someGreaterThan4 = numbers.some((n) => n > 4);
+  const everyGreaterThan0 = numbers.every((n) => n > 0);
+  const everyGreaterThan4 = numbers.every((n) => n > 4);
+  const someEqual1 = numbers.some((n) => n === 1);
+  return (
+    <div id="wd-includes-some-every">
+      <h4>Includes, Some, Every</h4>
+      includes(3) = {includes3 + ""}           <br />
+      includes(8) = {includes8 + ""}           <br />
+      includes(5) = {includes5 + ""}           <br />
+      some(n &gt; 4) = {someGreaterThan4 + ""} <br />
+      every(n &gt; 0) = {everyGreaterThan0 + ""} <br />
+      every(n &gt; 4) = {everyGreaterThan4 + ""} <br />
+      some(n === 1) = {someEqual1 + ""}
+      <hr />
+    </div>
+  );
+}
