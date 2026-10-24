@@ -1,10 +1,31 @@
+"use client";
+
 import { AiOutlineDashboard } from "react-icons/ai";
 import { IoCalendarOutline, IoFlaskOutline } from "react-icons/io5";
 import { LiaBookSolid } from "react-icons/lia";
-import { FaCircleQuestion, FaInbox, FaRegCircleUser } from "react-icons/fa6";
+import {
+  FaCircleQuestion,
+  FaClockRotateLeft,
+  FaInbox,
+  FaRegCircleUser,
+} from "react-icons/fa6";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+const LINKS = [
+  { label: "Dashboard", path: "/dashboard", id: "wd-dashboard-link", icon: AiOutlineDashboard },
+  { label: "Courses", path: "/dashboard", id: "wd-course-link", icon: LiaBookSolid },
+  { label: "Calendar", path: "/calendar", id: "wd-calendar-link", icon: IoCalendarOutline },
+  { label: "Inbox", path: "/inbox", id: "wd-inbox-link", icon: FaInbox },
+  { label: "Labs", path: "/labs", id: "wd-labs-link", icon: IoFlaskOutline },
+  { label: "History", path: "/history", id: "wd-history-link", icon: FaClockRotateLeft },
+  { label: "Help", path: "/labs", id: "wd-ai-nav-help", icon: FaCircleQuestion },
+] as const;
 
 export default function KambazNavigation() {
+  const pathname = usePathname() ?? "";
+  const accountActive = pathname.includes("/account");
+
   return (
     <nav
       id="wd-kambaz-navigation"
@@ -29,66 +50,39 @@ export default function KambazNavigation() {
       <Link
         href="/account"
         id="wd-account-link"
-        className="block bg-black py-3 text-center text-sm text-white no-underline"
+        className={`block py-3 text-center text-sm no-underline ${
+          accountActive ? "bg-white text-red-600" : "bg-black text-white"
+        }`}
       >
-        <FaRegCircleUser className="inline-block text-3xl text-white" />
+        <FaRegCircleUser
+          className={`inline-block text-3xl ${
+            accountActive ? "text-red-600" : "text-white"
+          }`}
+        />
         <br />
         Account
       </Link>
-      <Link
-        href="/dashboard"
-        id="wd-dashboard-link"
-        className="block bg-white py-3 text-center text-sm text-red-600 no-underline"
-      >
-        <AiOutlineDashboard className="inline-block text-3xl text-red-600" />
-        <br />
-        Dashboard
-      </Link>
-      <Link
-        href="/dashboard"
-        id="wd-course-link"
-        className="block bg-black py-3 text-center text-sm text-white no-underline"
-      >
-        <LiaBookSolid className="inline-block text-3xl text-red-600" />
-        <br />
-        Courses
-      </Link>
-      <Link
-        href="/calendar"
-        id="wd-calendar-link"
-        className="block bg-black py-3 text-center text-sm text-white no-underline"
-      >
-        <IoCalendarOutline className="inline-block text-3xl text-red-600" />
-        <br />
-        Calendar
-      </Link>
-      <Link
-        href="/inbox"
-        id="wd-inbox-link"
-        className="block bg-black py-3 text-center text-sm text-white no-underline"
-      >
-        <FaInbox className="inline-block text-3xl text-red-600" />
-        <br />
-        Inbox
-      </Link>
-      <Link
-        href="/labs"
-        id="wd-labs-link"
-        className="block bg-black py-3 text-center text-sm text-white no-underline"
-      >
-        <IoFlaskOutline className="inline-block text-3xl text-red-600" />
-        <br />
-        Labs
-      </Link>
-      <Link
-        href="/labs"
-        id="wd-ai-nav-help"
-        className="block bg-black py-3 text-center text-sm text-white no-underline"
-      >
-        <FaCircleQuestion className="inline-block text-3xl text-red-600" />
-        <br />
-        Help
-      </Link>
+      {LINKS.map((link) => {
+        const active =
+          link.label === "Courses"
+            ? pathname.includes("/courses")
+            : link.label !== "Help" && pathname.includes(link.path);
+        const Icon = link.icon;
+        return (
+          <Link
+            key={link.label}
+            href={link.path}
+            id={link.id}
+            className={`block py-3 text-center text-sm no-underline ${
+              active ? "bg-white text-red-600" : "bg-black text-white"
+            }`}
+          >
+            <Icon className="inline-block text-3xl text-red-600" />
+            <br />
+            {link.label}
+          </Link>
+        );
+      })}
     </nav>
   );
 }
