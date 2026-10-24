@@ -1,4 +1,5 @@
 import Link from "next/link";
+import * as db from "../../../../database";
 
 const INPUT =
   "w-full rounded border border-neutral-300 bg-white px-3 py-2 font-sans text-sm";
@@ -11,14 +12,22 @@ export default async function AssignmentEditor({
 }: {
   params: Promise<{ cid: string; aid: string }>;
 }) {
-  const { cid } = await params;
+  const { cid, aid } = await params;
+  const assignment = db.assignments.find((a) => a._id === aid);
   return (
     <div id="wd-assignments-editor" className="max-w-3xl">
       <div className="mb-4">
         <label htmlFor="wd-name" className="mb-1 block text-sm">
           Assignment Name
         </label>
-        <input id="wd-name" defaultValue="A1 - ENV + HTML" className={INPUT} />
+        <input
+          id="wd-name"
+          defaultValue={assignment?.title ?? ""}
+          className={INPUT}
+        />
+        <div id="wd-assignment-id" className="mt-1 text-xs text-neutral-500">
+          Assignment id: {aid}
+        </div>
       </div>
       <div className="mb-4">
         <label htmlFor="wd-description" className="mb-1 block text-sm">
@@ -27,7 +36,7 @@ export default async function AssignmentEditor({
         <textarea
           id="wd-description"
           rows={6}
-          defaultValue="The assignment is available online Submit a link to the landing page of your Web application running on Vercel."
+          defaultValue={assignment?.description ?? ""}
           className={INPUT}
         />
       </div>
@@ -36,7 +45,11 @@ export default async function AssignmentEditor({
         <label htmlFor="wd-points" className={ROW_LABEL}>
           Points
         </label>
-        <input id="wd-points" defaultValue={100} className={INPUT} />
+        <input
+          id="wd-points"
+          defaultValue={assignment?.points ?? 100}
+          className={INPUT}
+        />
       </div>
       <div className={ROW}>
         <label htmlFor="wd-group" className={ROW_LABEL}>
@@ -127,7 +140,7 @@ export default async function AssignmentEditor({
           <input
             type="date"
             id="wd-due-date"
-            defaultValue="2024-05-13"
+            defaultValue={assignment?.due}
             className={INPUT}
           />
           <div className="mt-4 flex flex-col gap-4 sm:flex-row">
@@ -141,7 +154,7 @@ export default async function AssignmentEditor({
               <input
                 type="date"
                 id="wd-available-from"
-                defaultValue="2024-05-06"
+                defaultValue={assignment?.available}
                 className={INPUT}
               />
             </div>
