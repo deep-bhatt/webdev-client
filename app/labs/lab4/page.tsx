@@ -3,6 +3,8 @@
 import ClickEvent from "./ClickEvent";
 import PassingDataOnEvent from "./PassingDataOnEvent";
 import PassingFunctions from "./PassingFunctions";
+import CounterBroken from "./CounterBroken";
+import Counter from "./Counter";
 
 export default function Lab4() {
   const sayHello = (message: string) => {
@@ -25,6 +27,8 @@ export default function Lab4() {
         sayMyName={sayMyName}
         theOtherFunction={sampleFromParent}
       />
+      <CounterBroken />
+      <Counter />
     </div>
   );
 }
