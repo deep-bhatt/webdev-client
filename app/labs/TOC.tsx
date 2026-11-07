@@ -12,6 +12,7 @@ const LINKS = [
   { href: "/labs/lab5", id: "wd-lab5-link", label: "Lab 5", match: (p: string) => p.includes("/lab5") },
   { href: "/book/ch1", id: "wd-toc-book-link", label: "Chapter 1", match: () => false },
   { href: "https://kambaz.dev/book/ch3", id: "wd-toc-book-ch3-link", label: "Book Ch3", match: () => false },
+  { href: "https://kambaz.dev/book/ch4", id: "wd-toc-book-ch4-link", label: "Book Ch4", match: () => false },
   { href: "/", id: "wd-kambaz-link", label: "Kambaz", match: () => false },
 ] as const;
 
