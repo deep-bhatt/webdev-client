@@ -41,6 +41,11 @@ export default function Lab4() {
             Profile forms side by side
           </Link>
         </li>
+        <li>
+          <Link href="/labs/lab4/hooks" id="wd-lab4-hooks-link">
+            Writing your own hooks
+          </Link>
+        </li>
       </ul>
       <ClickEvent />
       <PassingDataOnEvent />
