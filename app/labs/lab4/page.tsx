@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import ClickEvent from "./ClickEvent";
 import PassingDataOnEvent from "./PassingDataOnEvent";
 import PassingFunctions from "./PassingFunctions";
@@ -17,6 +18,7 @@ import UrlEncoding from "./UrlEncoding";
 import ContextExamples from "./context/ContextExamples";
 import ContextProfileForm from "./context/ContextProfileForm";
 import ZustandExamples from "./zustand/ZustandExamples";
+import ZustandProfileForm from "./zustand/ZustandProfileForm";
 
 export default function Lab4() {
   const sayHello = (message: string) => {
@@ -31,6 +33,13 @@ export default function Lab4() {
   return (
     <div id="wd-lab4">
       <h2>Lab 4</h2>
+      <ul id="wd-lab4-pages" className="mb-4 list-disc pl-6">
+        <li>
+          <Link href="/labs/lab4/profile-form" id="wd-lab4-profile-forms-link">
+            Profile forms side by side
+          </Link>
+        </li>
+      </ul>
       <ClickEvent />
       <PassingDataOnEvent />
       <PassingFunctions
@@ -53,6 +62,7 @@ export default function Lab4() {
       <ContextExamples />
       <ContextProfileForm />
       <ZustandExamples />
+      <ZustandProfileForm />
     </div>
   );
 }
