@@ -4,6 +4,7 @@ import { store } from "./store";
 import HelloRedux from "./HelloRedux";
 import CounterRedux from "./CounterRedux";
 import AddRedux from "./AddRedux";
+import ReduxTodos from "./ReduxTodos";
 
 export default function ReduxExamples() {
   return (
@@ -13,6 +14,7 @@ export default function ReduxExamples() {
         <HelloRedux />
         <CounterRedux />
         <AddRedux />
+        <ReduxTodos />
         <hr />
       </div>
     </Provider>
