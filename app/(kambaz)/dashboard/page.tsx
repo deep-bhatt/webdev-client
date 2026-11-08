@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import CourseCard from "./CourseCard";
+import * as db from "../database";
+import { useAccountContext } from "../account/AccountContext";
 import {
   emptyCourse,
   useCoursesStore,
@@ -16,6 +18,15 @@ export default function Dashboard() {
   const addCourse = useCoursesStore((state) => state.addCourse);
   const updateCourse = useCoursesStore((state) => state.updateCourse);
   const [course, setCourse] = useState<Course>(emptyCourse);
+  const { currentUser } = useAccountContext();
+  const visibleCourses = currentUser
+    ? courses.filter((c) =>
+        db.enrollments.some(
+          (enrollment) =>
+            enrollment.user === currentUser._id && enrollment.course === c._id,
+        ),
+      )
+    : courses;
 
   return (
     <div id="wd-dashboard">
@@ -74,13 +85,13 @@ export default function Dashboard() {
         />
       </div>
       <hr />
-      <h2 id="wd-dashboard-published">Published Courses ({courses.length})</h2>
+      <h2 id="wd-dashboard-published">Published Courses ({visibleCourses.length})</h2>
       <hr />
       <div
         id="wd-dashboard-courses"
         className="grid grid-cols-1 gap-8 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4"
       >
-        {courses.map((c) => (
+        {visibleCourses.map((c) => (
           <CourseCard key={c._id} course={c} onEdit={() => setCourse(c)} />
         ))}
       </div>
