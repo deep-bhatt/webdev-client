@@ -2,13 +2,13 @@
 
 import { useState } from "react";
 import CourseCard from "./CourseCard";
-import * as db from "../database";
 import { useAccountContext } from "../account/AccountContext";
 import {
   emptyCourse,
   useCoursesStore,
   type Course,
 } from "../store/coursesStore";
+import { isEnrolled, useEnrollmentsStore } from "../store/enrollmentsStore";
 
 const FIELD =
   "block w-full max-w-xl rounded border border-neutral-300 px-3 py-1.5";
@@ -17,20 +17,39 @@ export default function Dashboard() {
   const courses = useCoursesStore((state) => state.courses);
   const addCourse = useCoursesStore((state) => state.addCourse);
   const updateCourse = useCoursesStore((state) => state.updateCourse);
+  const enrollments = useEnrollmentsStore((state) => state.enrollments);
+  const enroll = useEnrollmentsStore((state) => state.enroll);
   const [course, setCourse] = useState<Course>(emptyCourse);
+  const [showAllCourses, setShowAllCourses] = useState(false);
   const { currentUser } = useAccountContext();
-  const visibleCourses = currentUser
-    ? courses.filter((c) =>
-        db.enrollments.some(
-          (enrollment) =>
-            enrollment.user === currentUser._id && enrollment.course === c._id,
-        ),
-      )
-    : courses;
+  const visibleCourses =
+    currentUser && !showAllCourses
+      ? courses.filter((c) => isEnrolled(enrollments, currentUser._id, c._id))
+      : courses;
+
+  const add = () => {
+    const newCourse = addCourse(course);
+    if (currentUser) enroll(currentUser._id, newCourse._id);
+  };
 
   return (
     <div id="wd-dashboard">
-      <h1 id="wd-dashboard-title">Dashboard</h1>
+      <h1
+        id="wd-dashboard-title"
+        className="flex flex-wrap items-center justify-between gap-2"
+      >
+        Dashboard
+        {currentUser && (
+          <button
+            type="button"
+            id="wd-enrollments-toggle"
+            className="rounded bg-blue-600 px-3 py-1.5 text-sm font-medium text-white"
+            onClick={() => setShowAllCourses(!showAllCourses)}
+          >
+            Enrollments
+          </button>
+        )}
+      </h1>
       <hr />
       <h5 className="flex flex-wrap items-center gap-2">
         New Course
@@ -38,7 +57,7 @@ export default function Dashboard() {
           type="button"
           className="rounded bg-blue-600 px-3 py-1.5 text-sm font-medium text-white"
           id="wd-add-new-course-click"
-          onClick={() => addCourse(course)}
+          onClick={add}
         >
           Add
         </button>
@@ -85,7 +104,10 @@ export default function Dashboard() {
         />
       </div>
       <hr />
-      <h2 id="wd-dashboard-published">Published Courses ({visibleCourses.length})</h2>
+      <h2 id="wd-dashboard-published">
+        {currentUser && showAllCourses ? "All Courses" : "Published Courses"} (
+        {visibleCourses.length})
+      </h2>
       <hr />
       <div
         id="wd-dashboard-courses"
