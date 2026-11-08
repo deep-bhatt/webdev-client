@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useAccountContext } from "../AccountContext";
+import { emptyUser, useAccountContext } from "../AccountContext";
 
 const INPUT =
   "mb-2 w-full rounded border border-neutral-300 px-3 py-2 font-sans";
@@ -26,17 +26,10 @@ export default function Signup() {
       return;
     }
     setCurrentUser({
+      ...emptyUser,
       _id: crypto.randomUUID(),
       username,
       password,
-      firstName: "",
-      lastName: "",
-      email: "",
-      role: "STUDENT",
-      loginId: "",
-      section: "",
-      lastActivity: "",
-      totalActivity: "",
     });
     router.push("/account/profile");
   };
